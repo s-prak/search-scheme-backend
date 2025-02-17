@@ -17,12 +17,14 @@ public class EncryptedDataController {
         this.encryptedDataRepository=encryptedDataRepository;
     }
 
+    @CrossOrigin(origins = "http://localhost:3001")
     @PostMapping("/DataOwner")
     public String addDocument(@RequestBody EncryptedDataModel document){
         encryptedDataRepository.save(document);
         return "Document created successfully";
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/DataUser/{keyword}")
     public String getByKeyword(@PathVariable String keyword){
         return encryptedDataService.getDocumentByKeyword(keyword);
